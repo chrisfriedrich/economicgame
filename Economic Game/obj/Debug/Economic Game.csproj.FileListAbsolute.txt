@@ -1,0 +1,44 @@
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\csc.exe
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\vbc.exe
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Economic Game.dll.config
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Economic Game.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Economic Game.pdb
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Antlr3.Runtime.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Newtonsoft.Json.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Helpers.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Mvc.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Optimization.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Razor.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.Deployment.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.Razor.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\WebGrease.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Helpers.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Mvc.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Optimization.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.Razor.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.Deployment.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\System.Web.WebPages.Razor.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Antlr3.Runtime.pdb
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\Newtonsoft.Json.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\obj\Debug\Economic Game.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\obj\Debug\Economic Game.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\obj\Debug\Economic Game.pdb
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\EntityFramework.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\EntityFramework.SqlServer.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\EntityFramework.xml
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\EntityFramework.SqlServer.xml

@@ -1,0 +1,173 @@
+﻿@model Economic_Game.Models.RoundViewModel
+@{
+    ViewBag.Title = "Round 2";
+}
+
+@*<h2>Round1</h2>
+
+    <h3>Starting Amount: @Model.StartingAmount.ToString()</h3>*@
+
+<script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+
+@if (ViewBag.GameMessage != null)
+{
+    <script>
+
+$(document).ready(function(){
+
+alert('@ViewBag.GameMessage');
+
+});
+
+        </script>
+}
+
+<script>
+$(document).ready(function () {
+    setTimeout(function () {
+        $('#sellerTyping').fadeIn(500);
+    }, 5000);
+
+    setTimeout(function () {
+        $('#sellerTyping').hide(300);
+    }, 8000);
+
+    setTimeout(function () {
+        $('#sellerMessage1').fadeIn(500);
+    }, 9000);
+
+    setTimeout(function () {
+        $('#sellerTyping').fadeIn(500);
+    }, 11000);
+
+    setTimeout(function () {
+        $('#sellerTyping').hide(300);
+    }, 13000);
+
+    setTimeout(function () {
+        $('#sellerMessage2').fadeIn(500);
+    }, 14000);
+
+    setTimeout(function () {
+        $('#sellerTyping').fadeIn(500);
+    }, 23000);
+
+    setTimeout(function () {
+        $('#sellerTyping').hide(300);
+    }, 24000);
+
+    setTimeout(function () {
+        $('#sellerWaitingMessage').fadeIn(500);
+    }, 25000);
+
+});
+    </script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(Model => Model.GameID)
+    @Html.HiddenFor(Model => Model.ReturnPercentage)
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                <h2>
+                    ROUND 2
+                </h2>
+                <h4>Real money</h4>
+            </th>
+            <th colspan="2"></th>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center;">
+                <label class="text-danger">@ViewBag.GameMessage</label>
+            </td>
+        </tr>
+        <tr>
+            <th width="33%">
+                <h4>
+                    <strong>Money To Invest:</strong> @Html.DisplayFor(Model => Model.StartingAmount)@*@Model.PlayerTotal.ToString()*@
+                    @Html.HiddenFor(Model => Model.StartingAmount)
+                </h4>
+            </th>
+            <th width="33%">
+                <h4 class="text-center">
+                    <strong>Current Earnings:</strong> @Html.DisplayFor(Model => Model.CurrentEarnings)
+                    @Html.HiddenFor(Model => Model.CurrentEarnings)
+                </h4>
+            </th>
+            <th>
+                <h4 style="float: right;">
+                    <strong>Round Multiplier:</strong> X @Html.DisplayFor(Model => Model.Multiplier)
+                    @Html.HiddenFor(Model => Model.Multiplier)
+                </h4>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p class="lead">
+                    You are the buyer.
+                    You have $@Model.StartingAmount to invest.  
+                    You can choose to either keep the $@Model.StartingAmount or invest part or none of it. 
+                    Whatever amount of money you choose to invest (up to $@Model.StartingAmount) will be multiplied by five.  
+                    The seller can choose to keep any amount up to 
+                    @{
+                                decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
+                    }
+                    $@potential or share part or all of the profit with you.  
+                    Please write down how much you would like to invest and how much you would like to keep.
+
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 style="float: right;"><strong>Seller Message:</strong>v cx</h4>
+            </td>
+            <td colspan="2">
+                <div style="text-align: left;">
+                    
+                    <div id="sellerTyping">Seller is typing...</div>
+                    <div id="sellerWaitingMessage">Hello?</div>
+                    <div id="sellerMessage2">Either way...</div>
+                    <div id="sellerMessage1">@Model.ComputerPersuasion</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table class="table" style="width: 75%; margin: 0 auto;">
+                    <tr>
+                        <td style="border: none;">
+                            <div class="form-inline">
+                                <label>Enter how much you would like to invest:</label>&nbsp;&nbsp;
+                                @Html.TextBoxFor(Model => Model.RoundInvestment, new { @class = "form-control small" })
+                            </div>
+                        </td>
+                        <td style="border: none;">
+                            <div class="form-inline">
+                                <label>Enter how much you would like to keep:</label>&nbsp;&nbsp;
+                                @Html.TextBoxFor(Model => Model.RoundKept, new { @class = "form-control small" })
+                            </div>
+                        </td>
+                    </tr>
+                    @if (ViewBag.Error != null)
+                {
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <label class="text-danger">@ViewBag.Error</label>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p class="text-center">
+                    <button type="submit" class="btn btn-default btn-success">Submit&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                </p>
+            </td>
+        </tr>
+    </table>
+}

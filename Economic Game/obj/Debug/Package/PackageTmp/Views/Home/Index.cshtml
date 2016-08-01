@@ -1,0 +1,150 @@
+﻿@model Economic_Game.Models.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+
+<script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+
+    $('#submitButton').prop('disabled', true);
+
+    setTimeout(function () {
+        $('#progressMessage1').fadeIn(200);
+    }, 0);
+
+    setTimeout(function () {
+        $('#progressMessage1').fadeOut(200);
+    }, 19000);
+
+    setTimeout(function () {
+        $('#progressMessage2').fadeIn(200);
+    }, 19000);
+
+    setTimeout(function () {
+        $('#progressMessage2').fadeOut(200);
+    }, 25000);
+
+    setTimeout(function () {
+        $('#progressMessage3').fadeIn(200);
+    }, 25000);
+
+    setTimeout(function () {
+        $('#progressMessage3').fadeOut(500);
+    }, 30000);
+
+    setTimeout(function () {
+        $('#progressMessage4').show();
+    }, 30000)
+
+    setTimeout(function () {
+        $('#submitButton').prop("disabled", false);
+    }, 30000);
+
+    setTimeout(function () {
+        if ($('#submitButton').text.length > 0) {
+            $('#submitButton').prop("class", "btn btn-default btn-success");
+        }
+    }, 30000);
+
+    //setTimeout(function () {
+    //    $('#sellerTyping').fadeIn(500);
+    //}, 23000);
+
+    //setTimeout(function () {
+    //    $('#sellerTyping').hide(300);
+    //}, 24000);
+
+    //setTimeout(function () {
+    //    $('#sellerWaitingMessage').fadeIn(500);
+    //}, 25000);
+
+});
+
+</script>
+
+
+
+    @using (Html.BeginForm())
+    {
+        <table class="table login-table">
+            <tr>
+                <th colspan="3" class="text-center">
+                    <h1>
+                        Economic Game
+                    </h1>
+                    <h3>BUYER PORTAL</h3>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p class="text-center">
+                        <strong>COMMUNICATION MODE:</strong> &nbsp;&nbsp; Seller to Buyer - <span style="font-weight: bold; color: red;">ONE WAY</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div id="progressMessageArea" style="text-align: center; font-weight: bold; height: 50px; vertical-align: middle;">
+                        <div id="progressMessage1">
+                            Searching for Seller Players...
+                        </div>
+                        <div id="progressMessage2">
+                            Seller Player found...
+                        </div>
+                        <div id="progressMessage3">
+                            Setting up game...
+                        </div>
+                        <div id="progressMessage4">
+                            Ready to Play.  Click <strong>Play</strong> to begin.
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p style="width: 90%; margin: 0 auto;">
+                        Thank you for choosing to play today. Please wait while we attempt to match you with a player.<br /><br />
+
+                        Communication enabled for this event is: &nbsp;
+                        <strong><em>Seller to Buyer ONE-WAY</em></strong>.<br />
+                        
+                        This means that the Seller (other player) can communicate with you, however you will not be able to respond.<br /><br />
+
+                        Please do not refresh your browser or use the back button during play as this will cause communication issues and may corrupt your results.<br /><br />
+
+                        Please enter your Amazon ID in the field below, and click "Play" once a match has been found.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%;"></td>
+                <td style="width: 50%;">
+                    <p class="text-center">
+                        @Html.Label("Amazon ID", new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.AmazonID, new { @class = "form-control text-center", @style="margin: 0 auto;" })
+                        @Html.ValidationMessageFor(model => model.AmazonID, "", new { @class = "text-danger" })
+                    </p>
+                </td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <p class="text-center">
+                        <button id="submitButton" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Play</button>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+
+    }

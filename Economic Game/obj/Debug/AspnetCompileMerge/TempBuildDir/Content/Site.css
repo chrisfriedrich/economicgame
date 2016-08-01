@@ -1,0 +1,127 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.lead {
+    font-size: medium;
+}
+
+.small {
+    width: 60px;
+}
+
+#sellerMessage1 {
+    display: none;
+    font-size: large;
+    font-family: Consolas;
+}
+
+#sellerMessage2 {
+    display: none;
+    font-size: large;
+    font-family: Consolas;
+}
+
+#sellerMessage3 {
+    display: none;
+    font-size: large;
+    font-family: Consolas;
+}
+
+#sellerTyping {
+    display: none;
+    text-align: center;
+    font-size: large;
+    font-family: Consolas;
+}
+
+#sellerDecidingMessage {
+    display: none;
+    font-size: larger;
+    color: green;
+}
+#sellerWaitingMessage {
+    display: none;
+    font-size: large;
+}
+
+#progressMessageArea {
+    font-size: larger;
+    font-family: Consolas;
+}
+#progressMessage1 {
+    display: none;
+}
+
+#progressMessage2 {
+    display: none;
+}
+
+#progressMessage3 {
+    display: none;
+}
+
+#progressMessage4 {
+    color: green;
+    display: none;
+}
+
+#gameMessage {
+    display: none;
+    font-size: larger;
+    color: green;
+}
+
+#currentEarnings {
+    display: none;
+}
+
+th {
+    background-color: lightgray;
+}
+
+.login-table {
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px black;
+    padding:0 15px 0 15px;
+}
+
+.game-table {
+    box-shadow: 0 0 30px black;
+    padding:0 15px 0 15px;
+}
+
+.summary-table {
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px black;
+    padding:0 15px 0 15px;
+}
+
+.summary-table td {
+    text-align: right;
+
+}
