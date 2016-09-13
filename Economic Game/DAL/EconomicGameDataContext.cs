@@ -16,5 +16,6 @@ namespace Economic_Game.DAL
 
         public DbSet<Game> Games { get; set; }
         public DbSet<GameSettings> GameSettings { get; set; }
+        public DbSet<Question> Questions { get; set; }
     }
 }

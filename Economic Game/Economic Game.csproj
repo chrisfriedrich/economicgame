@@ -136,6 +136,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameSettings.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\RoundViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

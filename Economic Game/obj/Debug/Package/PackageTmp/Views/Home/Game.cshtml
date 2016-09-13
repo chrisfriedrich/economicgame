@@ -1,6 +1,5 @@
 ﻿@model Economic_Game.Models.RoundViewModel
 @{
-    ViewBag.Title = "Round 2";
 }
 
 @*<h2>Round1</h2>
@@ -8,6 +7,7 @@
     <h3>Starting Amount: @Model.StartingAmount.ToString()</h3>*@
 
 <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+
 
 @if (ViewBag.GameMessage != null)
 {
@@ -28,61 +28,77 @@
 
     </script>
 }
+else
+{
+    <script>
+        $(document).ready(function () {
+            $('#currentEarnings').show();
+        });
+    </script>
+}
 
-<script>
-    $(document).ready(function () {
+@if(ViewBag.Error == null)
+    { 
+    <script>
+        $(document).ready(function () {
 
-    setTimeout(function () {
-        $('#gameMessage').fadeIn(500);
-    }, 7000);
+        setTimeout(function () {
+            $('#gameMessage').fadeIn(500);
+        }, 7000);
 
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 7000);
+        setTimeout(function () {
+            $('#sellerTyping').fadeIn(500);
+        }, 7000);
 
-    setTimeout(function () {
-        $('#sellerTyping').hide(300);
-    }, 1000);
+        setTimeout(function () {
+            $('#sellerTyping').hide(300);
+        }, 13000);
 
-    setTimeout(function () {
-        $('#sellerMessage1').show(200);
-    }, 9000);
+        setTimeout(function () {
+            $('#sellerMessage1').show(200);
+        }, 13400);
 
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 11000);
+        setTimeout(function () {
+            $('#sellerTyping').fadeIn(500);
+        }, 18000);
 
-    setTimeout(function () {
-        $('#sellerTyping').hide();
-    }, 13000);
+        setTimeout(function () {
+            $('#sellerTyping').hide();
+        }, 23000);
 
-    setTimeout(function () {
-        $('#sellerMessage2').show(200);
-    }, 14000);
+        setTimeout(function () {
+            $('#sellerMessage2').show(200);
+        }, 23500);
 
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 23000);
+        setTimeout(function () {
+            $('#sellerTyping').fadeIn(500);
+        }, 28000);
 
-    setTimeout(function () {
-        $('#sellerTyping').hide(300);
-    }, 24000);
+        setTimeout(function () {
+            $('#sellerTyping').hide(300);
+        }, 33000);
 
-    setTimeout(function () {
-        $('#sellerMessage3').show(200);
-    }, 25000);
+        setTimeout(function () {
+            $('#sellerMessage3').show(200);
+        }, 33400);
     
-    $(document).on('submit', 'form.remember', function () {
-        setTimeout(function () {
-            $('#sellerDecidingMessage').show(200);
-        }, 2000);
+        $(document).on('submit', 'form.remember', function () {
+            setTimeout(function () {
+                $('#sellerDecidingMessage').show(200);
+            }, 2000);
 
-        setTimeout(function () {
-            $('#sellerDecidingMessage').hide(200);
-        }, 8000);
+            setTimeout(function () {
+                $('#sellerDecidingMessage').hide(200);
+            }, 7000);
+        });
+
+        $(".toggleFAQ").click(function () {
+            $('#FAQtable').toggle();
+            $('.FAQ').toggle(500);
+        });
     });
-});
-</script>
+    </script>
+}
 
 
 @using (Html.BeginForm())
@@ -90,146 +106,189 @@
     @Html.HiddenFor(Model => Model.GameID)
     @Html.HiddenFor(Model => Model.ReturnPercentage)
     @Html.HiddenFor(Model => Model.CurrentRound)
-    <table class="table table-bordered game-table">
+    <table>
         <tr>
-            <th colspan="3">
-                <h1>
-                    ROUND @Model.CurrentRound
-                </h1>
-                @if (Model.RoundType == "Practice Round")
-                {
-                <h4 style="color: red;">
-                    @Model.RoundType.ToUpper()
-                </h4>
-                }
-                else
-                {
-                    <h4>
-                        @Model.RoundType
-                    </h4>
-                }
-            </th>
-        </tr>
-        <tr>
-            <td colspan="3" style="text-align: center;">
-                <label id="gameMessage">@ViewBag.GameMessage</label>
-                <label id="sellerDecidingMessage">Seller is Deciding...</label>
-            </td>
-        </tr>
-        <tr>
-            <th width="33%">
-                <h4 class="form-inline text-center">
-                    <strong>MONEY TO INVEST: </strong>&nbsp;
-                    <span style="font-size: xx-large; font-weight: bold;">@Html.DisplayFor(Model => Model.StartingAmount)</span>@*@Model.PlayerTotal.ToString()*@
-                    @Html.HiddenFor(Model => Model.StartingAmount)
-                </h4>
-            </th>
-            <th width="33%">
-                <h4 class="form-inline text-center">
-                    <strong>CURRENT EARNINGS: </strong>
-                    <span style="font-size: xx-large; font-weight: bold;" id="currentEarnings">
-                        @Html.DisplayFor(Model => Model.CurrentEarnings)
-                    </span>
-                    @Html.HiddenFor(Model => Model.CurrentEarnings)
-</h4>
-            </th>
-            <th>
-                <h4 class="form-inline text-center">
-                    <strong>ROUND MULTIPLIER: </strong> X
-                    <span style="font-size: xx-large; font-weight: bold;">
-                        @Html.DisplayFor(Model => Model.Multiplier)
-                    </span>
-                    @Html.HiddenFor(Model => Model.Multiplier)
-</h4>
-            </th>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <p class="lead">
-                    You are the buyer.<br /><br />
-                    You have $@Model.StartingAmount to invest.
-                    You can choose to either keep the $@Model.StartingAmount or invest part or none of it.
-                    Whatever amount of money you choose to invest (up to $@Model.StartingAmount) will be multiplied by @Model.MultiplierText.
-                    The seller can choose to keep any amount up to
-                    @{
-                        decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
-                    }
-                    $@potential or share part or all of the profit with you.<br /><br />
-                    Please write down how much you would like to invest and how much you would like to keep.
-
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="height: 75px;">
-                <table class="table" style="width:90%; margin: 0 auto;">
+            <td style="width:80%;">
+                <table class="table table-bordered game-table">
                     <tr>
-
-            <td style="width: 25%; border-top: none;">
-                <h4 style="float: right;"><strong>SELLER MESSAGE:</strong></h4>
-            </td>
-            <td style="width: 75%; border-top: none;">
-                <div style="text-align: left;">
-
-                    <div id="sellerTyping">Seller is typing...</div>
-                    <div id="sellerMessage3">@Model.Message3</div>
-                    <div id="sellerMessage2">@Model.Message2</div>
-                    <div id="sellerMessage1">@Model.Message1</div>
-
-                </div>
-            </td>
-            </tr>
-        </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <table class="table" style="width: 80%; margin: 0 auto; border: none;">
+                        <th colspan="3">
+                            <h1>
+                                ROUND <span style="font-weight: bold;">@Model.CurrentRound</span>
+                            </h1>
+                            <div style="float: right">
+                                <button type="button" class="btn btn-default btn-sm toggleFAQ"><span class="glyphicon glyphicon-question-sign" onclick="toggleFAQ()"></span>&nbsp;&nbsp;View/Hide FAQ</button>
+                            </div>
+                            @if (Model.RoundType == "Practice Round")
+                {
+                                <h4 style="color: red;">
+                                    @Model.RoundType.ToUpper()
+                                </h4>
+                            }
+                            else
+                            {
+                                <h4>
+                                    @Model.RoundType
+                                </h4>
+                            }
+                        </th>
+                    </tr>
                     <tr>
-                        <td style="border-top: none;">
-                            <h5><strong>ENTER HOW MUCH YOU WOULD LIKE TO INVEST: </strong></h5>&nbsp;&nbsp;
-                        </td>
-                        <td style="border-top: none;">
-                            @Html.TextBoxFor(Model => Model.RoundInvestment, new { @class = "form-control small" })
-                        </td>
-
-                        <td style="border-top: none;">
-                            <h5><strong>ENTER HOW MUCH YOU WOULD LIKE TO KEEP: </strong></h5>&nbsp;&nbsp;
-                        </td>
-                        <td style="border-top: none;"> 
-                            @Html.TextBoxFor(Model => Model.RoundKept, new { @class = "form-control small" })
+                        <td colspan="3" style="text-align: center;">
+                            <label id="gameMessage">@ViewBag.GameMessage</label>
+                            <label id="sellerDecidingMessage">Seller is Deciding...</label>
                         </td>
                     </tr>
-                    @if (ViewBag.Error != null)
+                    <tr>
+                        <th width="33%">
+                            <h4 class="form-inline text-center">
+                                <strong>MONEY TO INVEST: </strong>&nbsp;
+                                <span style="font-size: xx-large; font-weight: bold;">@Html.DisplayFor(Model => Model.StartingAmount)</span>@*@Model.PlayerTotal.ToString()*@
+                                @Html.HiddenFor(Model => Model.StartingAmount)
+                            </h4>
+                        </th>
+                        <th width="33%">
+                            <h4 class="form-inline text-center">
+                                <strong>CURRENT EARNINGS: &nbsp;</strong>
+                                <span style="font-size: xx-large; font-weight: bold;" id="currentEarnings">
+                                    @Html.DisplayFor(Model => Model.CurrentEarnings)
+                                </span>
+                                @Html.HiddenFor(Model => Model.CurrentEarnings)
+                            </h4>
+                        </th>
+                        <th>
+                            <h4 class="form-inline text-center">
+                                <strong>ROUND MULTIPLIER: </strong> X
+                                <span style="font-size: xx-large; font-weight: bold;">
+                                    @Html.DisplayFor(Model => Model.Multiplier)
+                                </span>
+                                @Html.HiddenFor(Model => Model.Multiplier)
+                            </h4>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <p class="lead" style="width: 90%; margin: 0 auto;">
+                                You are the buyer.<br /><br />
+                                You have $@Model.StartingAmount to invest.
+                                You can choose to either keep the $@Model.StartingAmount or invest part or none of it.
+                                Whatever amount of money you choose to invest (up to $@Model.StartingAmount) will be multiplied by @Model.MultiplierText.
+                                The seller can choose to keep any amount up to
+                                @{
+                                    decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
+                                }
+                                $@potential or share part or all of the profit with you.<br /><br />
+                                Please enter how much you would like to invest and how much you would like to keep.
+
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="height: 75px;">
+                            <table class="table" style="width:90%; margin: 0 auto;">
+                                <tr>
+
+                                    <td style="width: 30%; border-top: none;">
+                                        <h4 style="float: right;"><strong>SELLER MESSAGE:</strong></h4><br />
+                                        <div style="float: right;" id="sellerTyping">Seller is typing...</div>
+                                    </td>
+                                    <td style="width: 70%; border-top: none;">
+                                        <div style="text-align: left;">
+                                                <div id="sellerMessage1">@Model.Message1<br /></div>
+                                                <div id="sellerMessage2">@Model.Message2<br /></div>
+                                                <div id="sellerMessage3">@Model.Message3<br /></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <table class="table" style="width: 90%; margin: 0 auto; border: none;">
+                                <tr>
+                                    <td style="border-top: none;">
+                                        <h5><strong>ENTER HOW MUCH YOU WOULD LIKE TO INVEST: </strong></h5>&nbsp;&nbsp;
+                                    </td>
+                                    <td style="border-top: none; width: 20%;">
+                                        @*@Html.TextBoxFor(Model => Model.RoundInvestment, new { @class = "form-control small" })*@
+                                        <div class="form-inline">
+                                            <span style="font-size: x-large; font-weight: bold;">$</span>@Html.TextBoxFor(Model => Model.RoundInvestmentDollars, new { @class = "form-control smallest", @maxlength = "1" })
+                                            <span style="font-size: x-large; font-weight: bold;">.</span>@Html.TextBoxFor(Model => Model.RoundInvestmentCents, new { @class = "form-control smaller", @maxlength = "2" })
+                                        </div>
+                                    </td>
+
+                                    <td style="border-top: none;">
+                                        <h5><strong>ENTER HOW MUCH YOU WOULD LIKE TO KEEP: </strong></h5>&nbsp;&nbsp;
+                                    </td>
+                                    <td style="border-top: none; width: 20%;">
+                                        @*@Html.TextBoxFor(Model => Model.RoundKept, new { @class = "form-control small" })*@
+                                        <div class="form-inline">
+                                            <span style="font-size: x-large; font-weight: bold;">$</span>@Html.TextBoxFor(Model => Model.RoundKeptDollars, new { @class = "form-control smallest", @maxlength = "1" })
+                                            <span style="font-size: x-large; font-weight: bold;">.</span>@Html.TextBoxFor(Model => Model.RoundKeptCents, new { @class = "form-control smaller", @maxlength = "2" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">
+                                            <label class="text-danger">@ViewBag.Error</label>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                    @if (ViewBag.EndGame == null)
                     {
                         <tr>
-                            <td colspan="4" style="text-align: center;">
-                                <label class="text-danger">@ViewBag.Error</label>
+                            <td colspan="3">
+                                <p class="text-center">
+                                    <button type="submit" class="btn btn-default btn-success">Submit&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                                </p>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3">
+                                <p class="text-center">
+                                    <a href="/Home/Summary?id=@Model.GameID" class="btn btn-default btn-success"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;View Game Summary</a>
+                                </p>
                             </td>
                         </tr>
                     }
                 </table>
             </td>
-        </tr>
-        @if (ViewBag.EndGame == null)
-        {
-        <tr>
-            <td colspan="3">
-                <p class="text-center">
-                    <button type="submit" class="btn btn-default btn-success">Submit&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
-                </p>
+            <td class="FAQ" style="vertical-align: top;">
+                <table class="table faq-table">
+                    <tr>
+                        <th>
+                            <h3>Frequently Asked Questions</h3>
+                        </th>
+                    </tr>
+                    @if (ViewData["Questions"] != null)
+                    {
+                    foreach (Economic_Game.Models.Question question in (List<Economic_Game.Models.Question>)ViewData["Questions"])
+                    {
+                        <tr>
+                            <th>
+                                <strong>Q: @question.QuestionText</strong>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>A: </strong>@question.AnswerText
+                            </td>
+                        </tr>
+                    }
+                    }
+                </table>
             </td>
         </tr>
-        }
-        else
-        {
-            <tr>
-                <td colspan="3">
-                    <p class="text-center">
-                        <a href="/Home/Summary?id=@Model.GameID" class="btn btn-default btn-success"><span class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;View Game Summary</a>
-                    </p>
-                </td>
-            </tr>
-        }
     </table>
+    
+
+    
                         }

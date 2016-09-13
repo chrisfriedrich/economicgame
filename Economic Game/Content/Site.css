@@ -32,28 +32,39 @@ textarea {
     width: 60px;
 }
 
+.smallest {
+    width: 35px;
+}
+
+.smaller {
+    width: 45px;
+}
+
 #sellerMessage1 {
     display: none;
-    font-size: large;
+    font-size: medium;
+    color: green;
     font-family: Consolas;
 }
 
 #sellerMessage2 {
     display: none;
-    font-size: large;
+    font-size: medium;
+    color: green;
     font-family: Consolas;
 }
 
 #sellerMessage3 {
     display: none;
-    font-size: large;
+    font-size: medium;
+    color: green;
     font-family: Consolas;
 }
 
 #sellerTyping {
     display: none;
     text-align: center;
-    font-size: large;
+    font-size: medium;
     font-family: Consolas;
 }
 
@@ -84,6 +95,10 @@ textarea {
 }
 
 #progressMessage4 {
+    display: none;
+}
+
+#progressMessage5 {
     color: green;
     display: none;
 }
@@ -112,6 +127,16 @@ th {
 .game-table {
     box-shadow: 0 0 30px black;
     padding:0 15px 0 15px;
+}
+
+.faq-table {
+    margin-left: 15px;
+    box-shadow: 0 0 30px black;
+    padding:0 15px 0 15px;
+}
+.FAQ {
+    display: none;
+    font-size: smaller;
 }
 
 .summary-table {

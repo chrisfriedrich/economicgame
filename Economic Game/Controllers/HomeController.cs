@@ -15,12 +15,14 @@ namespace Economic_Game.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Title = "Home";
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(LoginViewModel model)
         {
+            ViewBag.Title = "Home";
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -46,9 +48,11 @@ namespace Economic_Game.Controllers
 
             game.GameSettingsID = currentSettings.GameSettingsID;
             game.PlayerTotal = currentSettings.StartingAmount;
-
+            
             db.Games.Add(game);
             db.SaveChanges();
+
+            ViewData["Questions"] = db.Questions.ToList();
 
             return RedirectToAction("Game", new { id = game.GameID });
         }
@@ -58,11 +62,14 @@ namespace Economic_Game.Controllers
             Game game = db.Games.Find(id);
             RoundViewModel model = new RoundViewModel();
 
+
             switch (game.CurrentRound)
             {
                 case 1:
+                    ViewBag.Title = "Round 1";
                     model.GameID = game.GameID;
                     model.CurrentRound = 1;
+                    model.CurrentEarnings = 0;
                     model.RoundType = "Practice Round";
                     model.ComputerPersuasion = game.ComputerPersuasion;
                     model.ComputerApology = game.ComputerApology;
@@ -74,6 +81,7 @@ namespace Economic_Game.Controllers
                     model.Message1 = "This round is just practice, right?";
                     model.Message2 = "Oh yeah, you can't talk to me.";
                     model.Message3 = "Sorry";
+                    ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 2:
                     model.GameID = game.GameID;
@@ -96,25 +104,40 @@ namespace Economic_Game.Controllers
         {
             Game game = db.Games.Find(model.GameID);
 
-            if (model.RoundInvestment == null && model.RoundKept == null)
+            double roundInvestment = 0.00;
+            string rawRoundInvestment = model.RoundInvestmentDollars.ToString() + '.' + model.RoundInvestmentCents.ToString();
+            if (Double.TryParse(rawRoundInvestment, out roundInvestment))
+            {
+                roundInvestment = double.Parse(rawRoundInvestment);
+            }
+
+            double roundKept = 0.00;
+            string rawRoundKept = model.RoundKeptDollars.ToString() + '.' + model.RoundKeptCents.ToString();
+            if (Double.TryParse(rawRoundKept, out roundKept))
+            {
+                roundKept = double.Parse(rawRoundKept);
+            }
+
+
+            if (roundInvestment == 0 && roundKept == 0)
             {
                 ViewBag.Error = "You must invest money or indicate you wish to keep money.";
                 return View(model);
             }
-            else if (model.RoundKept != null && model.RoundInvestment != null)
+            else if (roundInvestment > 0 && roundKept > 0)
             {
-                if (((decimal)model.RoundInvestment + (decimal)model.RoundKept) > model.StartingAmount || ((decimal)model.RoundInvestment + (decimal)model.RoundKept) < model.StartingAmount)
+                if (((decimal)roundInvestment + (decimal)roundKept) > model.StartingAmount || ((decimal)roundInvestment + (decimal)roundKept) < model.StartingAmount)
                 {
                     ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
                     return View(model);
                 }
             }
-            else if (model.RoundInvestment == null && (model.RoundKept < model.StartingAmount || model.RoundKept > model.StartingAmount))
+            else if (roundInvestment == 0 && ((decimal)roundKept < model.StartingAmount || (decimal)roundKept > model.StartingAmount))
             {
                 ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
                 return View(model);
             }
-            else if (model.RoundKept == null && (model.RoundInvestment < model.StartingAmount || model.RoundInvestment > model.StartingAmount))
+            else if (roundKept == 0 && ((decimal)roundInvestment < model.StartingAmount || (decimal)roundInvestment > model.StartingAmount))
             {
                 ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
                 return View(model);
@@ -122,26 +145,30 @@ namespace Economic_Game.Controllers
 
             ModelState.Clear();
 
+            ViewData["Questions"] = db.Questions.ToList();
+
             switch (model.CurrentRound)
             {
                 case 1:
+
                     game.CurrentRound = 2;
 
-                    if(model.RoundKept != null)
+                    if(roundKept > 0)
                     {
-                        game.Round1Kept = model.RoundKept;
-                        game.PlayerTotal += model.RoundKept;
+                        game.Round1Kept = (decimal)roundKept;
+                        game.PlayerTotal += (decimal)roundKept;
                     }
                     else
                     {
                         game.Round1Kept = 0;
                     }
 
-                    if (model.RoundInvestment != null)
+                    if (roundInvestment > 0)
                     {
-                        game.Round1Investment = model.RoundInvestment;
-                        game.Round1Returned = (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
-                        game.PlayerTotal += (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
+                        game.Round1Investment = (decimal)roundInvestment;
+                        game.Round1Returned = (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        //game.PlayerTotal += (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        game.PlayerTotal = 0;
                     }
                     else
                     {
@@ -150,7 +177,7 @@ namespace Economic_Game.Controllers
 
                     db.Entry(game).State = EntityState.Modified;
                     db.SaveChanges();
-
+                    ViewBag.Title = "Round 2";
                     model.GameID = game.GameID;
                     model.CurrentRound = 2;
                     model.RoundType = "Real Money";
@@ -170,21 +197,21 @@ namespace Economic_Game.Controllers
                 case 2:
                     game.CurrentRound = 3;
 
-                    if (model.RoundKept != null)
+                    if (roundKept > 0)
                     {
-                        game.Round2Kept = model.RoundKept;
-                        game.PlayerTotal += model.RoundKept;
+                        game.Round2Kept = (decimal)roundKept;
+                        game.PlayerTotal += (decimal)roundKept;
                     }
                     else
                     {
                         game.Round2Kept = 0;
                     }
 
-                    if (model.RoundInvestment != null)
+                    if (roundInvestment > 0)
                     {
-                        game.Round2Investment = model.RoundInvestment;
-                        game.Round2Returned = (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
-                        game.PlayerTotal += (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
+                        game.Round2Investment = (decimal)roundInvestment;
+                        game.Round2Returned = (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        game.PlayerTotal += ((model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage);
                     }
                     else
                     {
@@ -194,6 +221,7 @@ namespace Economic_Game.Controllers
                     db.Entry(game).State = EntityState.Modified;
                     db.SaveChanges();
 
+                    ViewBag.Title = "Round 3";
                     model.GameID = game.GameID;
                     model.CurrentRound = 3;
                     model.RoundType = "Real Money";
@@ -213,21 +241,21 @@ namespace Economic_Game.Controllers
                 case 3:
                     game.CurrentRound = 4;
 
-                    if (model.RoundKept != null)
+                    if (roundKept > 0)
                     {
-                        game.Round3Kept = model.RoundKept;
-                        game.PlayerTotal += model.RoundKept;
+                        game.Round3Kept = (decimal)roundKept;
+                        game.PlayerTotal += (decimal)roundKept;
                     }
                     else
                     {
                         game.Round3Kept = 0;
                     }
 
-                    if (model.RoundInvestment != null)
+                    if (roundInvestment > 0)
                     {
-                        game.Round3Investment = model.RoundInvestment;
-                        game.Round3Returned = (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
-                        game.PlayerTotal += (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
+                        game.Round3Investment = (decimal)roundInvestment;
+                        game.Round3Returned = (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        game.PlayerTotal += ((model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage);
                     }
                     else
                     {
@@ -256,21 +284,21 @@ namespace Economic_Game.Controllers
                 case 4:
                     game.CurrentRound = 4;
 
-                    if (model.RoundKept != null)
+                    if (roundKept > 0)
                     {
-                        game.Round4Kept = model.RoundKept;
-                        game.PlayerTotal += model.RoundKept;
+                        game.Round4Kept = (decimal)roundKept;
+                        game.PlayerTotal += (decimal)roundKept;
                     }
                     else
                     {
                         game.Round4Kept = 0;
                     }
 
-                    if (model.RoundInvestment != null)
+                    if (roundInvestment > 0)
                     {
-                        game.Round4Investment = model.RoundInvestment;
-                        game.Round4Returned = (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
-                        game.PlayerTotal += (model.Multiplier * model.RoundInvestment) * model.ReturnPercentage;
+                        game.Round4Investment = (decimal)roundInvestment;
+                        game.Round4Returned = (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        game.PlayerTotal += ((model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage);
                     }
                     else
                     {
@@ -280,6 +308,7 @@ namespace Economic_Game.Controllers
                     db.Entry(game).State = EntityState.Modified;
                     db.SaveChanges();
 
+                    ViewBag.Title = "Round 4";
                     model.GameID = game.GameID;
                     model.CurrentRound = 4;
                     model.RoundType = "Real Money";
@@ -622,7 +651,8 @@ namespace Economic_Game.Controllers
         public ActionResult Summary(int id)
         {
             Game game = db.Games.Find(id);
-            
+
+            ViewBag.Title = "Summary";
             if(game != null)
             {
                 return View(game);

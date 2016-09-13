@@ -22,7 +22,13 @@ namespace Economic_Game.Models
         public string MultiplierText { get; set; }
 
         public decimal? RoundInvestment { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public int? RoundInvestmentDollars { get; set; }
+        public int? RoundInvestmentCents { get; set; }
         public decimal? RoundKept { get; set; }
+        public int? RoundKeptDollars { get; set; }
+        public int? RoundKeptCents { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? RoundReturned { get; set; }
         public decimal? ReturnPercentage { get; set; }
 

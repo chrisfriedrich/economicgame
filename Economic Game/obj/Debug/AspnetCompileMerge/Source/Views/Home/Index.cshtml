@@ -1,6 +1,5 @@
 ﻿@model Economic_Game.Models.LoginViewModel
 @{
-    ViewBag.Title = "Home Page";
 }
 
 @*<div class="jumbotron">
@@ -12,6 +11,8 @@
 <script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>
 
+@if (ViewBag.Error != null)
+{
 <script>
     $(document).ready(function () {
 
@@ -44,10 +45,22 @@
     setTimeout(function () {
         $('#progressMessage4').show();
     }, 30000)
+    
+    setTimeout(function () {
+        $('#progressMessage4').fadeOut(500);
+    }, 33000);
+
+    setTimeout(function () {
+        $('#progressMessage5').show();
+    }, 33000)
+
+    setTimeout(function () {
+        $('#progressMessage5').fadeOut(500);
+    }, 35000);
 
     setTimeout(function () {
         $('#submitButton').prop("disabled", false);
-    }, 30000);
+    }, 35000);
 
     setTimeout(function () {
         if ($('#submitButton').text.length > 0) {
@@ -70,6 +83,17 @@
 });
 
 </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            $('#progressMessage5').show();
+            $('#submitButton').prop("disabled", false);
+            $('#submitButton').prop("class", "btn btn-default btn-success");
+        });
+    </script>
+}
 
 
 
@@ -104,6 +128,9 @@
                             Setting up game...
                         </div>
                         <div id="progressMessage4">
+                            Waiting for Player to join the game...
+                        </div>
+                        <div id="progressMessage5">
                             Ready to Play.  Click <strong>Play</strong> to begin.
                         </div>
                     </div>
