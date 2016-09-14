@@ -192,10 +192,10 @@
                 You can choose to either keep the $@Model.StartingAmount or invest part or none of it.
                 Whatever amount of money you choose to invest (up to $@Model.StartingAmount) will be multiplied by @Model.MultiplierText.
                 The seller can choose to keep any amount up to
-                @{
+                @*@{
                     decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
-                }
-                $@potential or share part or all of the profit with you.<br /><br />
+                }*@
+                $@potential.ToString() or share part or all of the profit with you.<br /><br />
                 Please write down how much you would like to invest and how much you would like to keep.
 
             </p>

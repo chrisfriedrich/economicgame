@@ -6,10 +6,11 @@
 
     <h3>Starting Amount: @Model.StartingAmount.ToString()</h3>*@
 
-<script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>
 
 
-@if (ViewBag.GameMessage != null)
+@*@if (ViewBag.GameMessage != null)
 {
     <script>
 
@@ -35,16 +36,16 @@ else
             $('#currentEarnings').show();
         });
     </script>
-}
+}*@
 
 @if(ViewBag.Error == null)
     { 
     <script>
         $(document).ready(function () {
 
-        setTimeout(function () {
-            $('#gameMessage').fadeIn(500);
-        }, 7000);
+        //setTimeout(function () {
+        //    $('#gameMessage').show(500);
+        //}, 7000);
 
         setTimeout(function () {
             $('#sellerTyping').fadeIn(500);
@@ -82,15 +83,15 @@ else
             $('#sellerMessage3').show(200);
         }, 33400);
     
-        $(document).on('submit', 'form.remember', function () {
-            setTimeout(function () {
-                $('#sellerDecidingMessage').show(200);
-            }, 2000);
+        //$(document).on('submit', 'form.remember', function () {
+        //    setTimeout(function () {
+        //        $('#sellerDecidingMessage').show(200);
+        //    }, 2000);
 
-            setTimeout(function () {
-                $('#sellerDecidingMessage').hide(200);
-            }, 7000);
-        });
+        //    setTimeout(function () {
+        //        $('#sellerDecidingMessage').hide(200);
+        //    }, 7000);
+        //});
 
         $(".toggleFAQ").click(function () {
             $('#FAQtable').toggle();
@@ -112,13 +113,24 @@ else
                 <table class="table table-bordered game-table">
                     <tr>
                         <th colspan="3">
-                            <h1>
-                                ROUND <span style="font-weight: bold;">@Model.CurrentRound</span>
-                            </h1>
-                            <div style="float: right">
+                            
+                                @if (Model.CurrentRound < 5)
+                                {
+                                    <h1>
+                                        ROUND <span style="font-weight: bold;">@Model.CurrentRound</span>
+                                    </h1>
+                                }
+                                else
+                                {
+                                    <h1>
+                                        ROUND <span style="font-weight: bold;">4</span>
+                                    </h1>
+                                }
+                                    
+                            <div>
                                 <button type="button" class="btn btn-default btn-sm toggleFAQ"><span class="glyphicon glyphicon-question-sign" onclick="toggleFAQ()"></span>&nbsp;&nbsp;View/Hide FAQ</button>
                             </div>
-                            @if (Model.RoundType == "Practice Round")
+                            @*@if (Model.RoundType == "Practice Round")
                 {
                                 <h4 style="color: red;">
                                     @Model.RoundType.ToUpper()
@@ -129,12 +141,16 @@ else
                                 <h4>
                                     @Model.RoundType
                                 </h4>
-                            }
+                            }*@
                         </th>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: center;">
-                            <label id="gameMessage">@ViewBag.GameMessage</label>
+                            @if(Model.RoundReturned != null)
+                            {
+                                <span style="font-size: larger; color: green;">Seller has decided to return @Model.RoundReturned.Value.ToString("C")</span>
+                            }
+                            <label id="gameStatusMessage">@Model.GameMessage</label>
                             <label id="sellerDecidingMessage">Seller is Deciding...</label>
                         </td>
                     </tr>
@@ -149,8 +165,11 @@ else
                         <th width="33%">
                             <h4 class="form-inline text-center">
                                 <strong>CURRENT EARNINGS: &nbsp;</strong>
-                                <span style="font-size: xx-large; font-weight: bold;" id="currentEarnings">
-                                    @Html.DisplayFor(Model => Model.CurrentEarnings)
+                                <span style="font-size: xx-large; font-weight: bold;">
+                                    @if (Model.PlayerTotal != null)
+                                    {
+                                    @Model.PlayerTotal.Value.ToString("C")
+                                    }
                                 </span>
                                 @Html.HiddenFor(Model => Model.CurrentEarnings)
                             </h4>
@@ -169,34 +188,42 @@ else
                         <td colspan="3">
                             <p class="lead" style="width: 90%; margin: 0 auto;">
                                 You are the buyer.<br /><br />
-                                You have $@Model.StartingAmount to invest.
-                                You can choose to either keep the $@Model.StartingAmount or invest part or none of it.
-                                Whatever amount of money you choose to invest (up to $@Model.StartingAmount) will be multiplied by @Model.MultiplierText.
-                                The seller can choose to keep any amount up to
+                                You have @Model.StartingAmount.Value.ToString("C") to invest.&nbsp;&nbsp;
+                                You can choose to either keep the @Model.StartingAmount.Value.ToString("C") or invest part or none of it.&nbsp;&nbsp;
+                                Whatever amount of money you choose to invest (up to @Model.StartingAmount.Value.ToString("C")) will be multiplied by @Model.MultiplierText.&nbsp;&nbsp;
+                                The seller can choose to keep any amount up to&nbsp;
                                 @{
                                     decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
                                 }
-                                $@potential or share part or all of the profit with you.<br /><br />
-                                Please enter how much you would like to invest and how much you would like to keep.
+                                @potential.ToString("C") or share part or all of the profit back with you.<br /><br />
+
+                                Please enter how much you would like to invest and how much you would like to keep.&nbsp;&nbsp;
+                                <span style="font-size: large;">Remember the total cannot exceed @Model.StartingAmount.Value.ToString("C")</span>
 
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="height: 75px;">
-                            <table class="table" style="width:90%; margin: 0 auto;">
+                        <td colspan="3" style="height: 100px;">
+                            <table class="table" style="height: 100%; width:90%; margin: 0 auto;">
                                 <tr>
 
                                     <td style="width: 30%; border-top: none;">
                                         <h4 style="float: right;"><strong>SELLER MESSAGE:</strong></h4><br />
+                                        @if (ViewBag.EndGame == null)
+                                        {
                                         <div style="float: right;" id="sellerTyping">Seller is typing...</div>
+                                        }
                                     </td>
                                     <td style="width: 70%; border-top: none;">
+                                        @if (ViewBag.EndGame == null)
+                                        {
                                         <div style="text-align: left;">
                                                 <div id="sellerMessage1">@Model.Message1<br /></div>
                                                 <div id="sellerMessage2">@Model.Message2<br /></div>
                                                 <div id="sellerMessage3">@Model.Message3<br /></div>
                                         </div>
+                                        }
                                     </td>
                                 </tr>
                             </table>

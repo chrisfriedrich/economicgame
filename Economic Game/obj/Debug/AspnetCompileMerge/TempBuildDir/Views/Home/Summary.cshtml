@@ -8,7 +8,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
 
-@if (ViewBag.GameMessage != null)
+@*@if (ViewBag.GameMessage != null)
 {
     <script>
 
@@ -19,9 +19,9 @@ alert('@ViewBag.GameMessage');
 });
 
     </script>
-}
+}*@
 
-<script>
+@*<script>
 $(document).ready(function () {
     setTimeout(function () {
         $('#sellerTyping').fadeIn(500);
@@ -60,7 +60,7 @@ $(document).ready(function () {
     }, 25000);
 
 });
-</script>
+</script>*@
 
 
 @using (Html.BeginForm())
@@ -88,11 +88,11 @@ $(document).ready(function () {
             @*<td>Round Subtotal</td>*@
         </tr>
         <tr>
-            <td><span style="color: red;">PRACTICE</span>&nbsp;&nbsp; 1</td>
-            <td style="background-color: lightpink;">@Model.Round1Multiplier</td>
-            <td style="background-color: lightpink;">@Model.Round1Kept.Value.ToString("C")</td>
-            <td style="background-color: lightpink;">@Model.Round1Investment.Value.ToString("C")</td>
-            <td style="background-color: lightpink;">@Model.Round1Returned.Value.ToString("C")</td>
+            <td>1</td>
+            <td>@Model.Round1Multiplier</td>
+            <td>@Model.Round1Kept.Value.ToString("C")</td>
+            <td>@Model.Round1Investment.Value.ToString("C")</td>
+            <td>@Model.Round1Returned.Value.ToString("C")</td>
             @*@{ decimal round1Subtotal = 0;
             }
             <td>@round1Subtotal</td>*@
@@ -127,11 +127,11 @@ $(document).ready(function () {
         </tr>
         <tr>
             <th colspan="2">SUBTOTALS</th>
-            @{ string totalKept = ((Model.Round2Kept ?? 0) + (Model.Round3Kept ?? 0) + (Model.Round4Kept ?? 0)).ToString("C"); }
+            @{ string totalKept = ((Model.Round1Kept ?? 0) + (Model.Round2Kept ?? 0) + (Model.Round3Kept ?? 0) + (Model.Round4Kept ?? 0)).ToString("C"); }
             <td>@totalKept</td>
-            @{ string totalInvested =  ((Model.Round2Investment ?? 0) + (Model.Round3Investment ?? 0) + (Model.Round4Investment ?? 0)).ToString("C"); }
+            @{ string totalInvested =  ((Model.Round1Investment ?? 0) + (Model.Round2Investment ?? 0) + (Model.Round3Investment ?? 0) + (Model.Round4Investment ?? 0)).ToString("C"); }
             <td>@totalInvested</td>
-            @{ string totalReturned = ((Model.Round2Returned ?? 0) + (Model.Round3Returned ?? 0) + (Model.Round4Returned ?? 0)).ToString("C"); }
+            @{ string totalReturned = ((Model.Round1Returned ?? 0) + (Model.Round2Returned ?? 0) + (Model.Round3Returned ?? 0) + (Model.Round4Returned ?? 0)).ToString("C"); }
             <td>@totalReturned</td>
 
         </tr>
@@ -142,8 +142,8 @@ $(document).ready(function () {
                 </div>
             </th>
             @{
-                decimal total = (((Model.Round2Kept ?? 0) + (Model.Round3Kept ?? 0) + (Model.Round4Kept ?? 0)) +
-                                ((Model.Round2Returned ?? 0) + (Model.Round3Returned ?? 0) + (Model.Round4Returned ?? 0)));
+                decimal total = (((Model.Round1Kept ?? 0) + (Model.Round2Kept ?? 0) + (Model.Round3Kept ?? 0) + (Model.Round4Kept ?? 0)) +
+                                ((Model.Round1Returned ?? 0) + (Model.Round2Returned ?? 0) + (Model.Round3Returned ?? 0) + (Model.Round4Returned ?? 0)));
                 string gameTotal = total.ToString("C");
             }
             <td>

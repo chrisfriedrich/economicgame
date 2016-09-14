@@ -22,13 +22,13 @@ namespace Economic_Game.Models
         public string MultiplierText { get; set; }
 
         public decimal? RoundInvestment { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        public int? RoundInvestmentDollars { get; set; }
-        public int? RoundInvestmentCents { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public string RoundInvestmentDollars { get; set; }
+        public string RoundInvestmentCents { get; set; }
         public decimal? RoundKept { get; set; }
-        public int? RoundKeptDollars { get; set; }
-        public int? RoundKeptCents { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        public string RoundKeptDollars { get; set; }
+        public string RoundKeptCents { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? RoundReturned { get; set; }
         public decimal? ReturnPercentage { get; set; }
 
@@ -36,6 +36,8 @@ namespace Economic_Game.Models
         public decimal? PlayerTotal { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal? CurrentEarnings { get; set; }
+
+        public string GameMessage { get; set; }
 
         public string Message1 { get; set; }
         public string Message2 { get; set; }

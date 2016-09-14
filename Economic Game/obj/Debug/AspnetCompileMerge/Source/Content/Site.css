@@ -104,7 +104,6 @@ textarea {
 }
 
 #gameMessage {
-    display: none;
     font-size: larger;
     color: green;
 }

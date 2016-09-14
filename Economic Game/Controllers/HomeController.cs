@@ -47,14 +47,219 @@ namespace Economic_Game.Controllers
             game.ComputerPersuasion = currentSettings.ComputerPersuasion;
 
             game.GameSettingsID = currentSettings.GameSettingsID;
-            game.PlayerTotal = currentSettings.StartingAmount;
+            game.PlayerTotal = 0;
             
             db.Games.Add(game);
             db.SaveChanges();
 
             ViewData["Questions"] = db.Questions.ToList();
 
+            return RedirectToAction("Loading", new { id = game.GameID });
+        }
+
+        public ActionResult Loading(int? id)
+        {
+            Game game = db.Games.Find(id);
+            return View(game);
+        }
+
+        [HttpPost]
+        public ActionResult Loading(Game game)
+        {
             return RedirectToAction("Game", new { id = game.GameID });
+        }
+
+        public ActionResult Waiting(int? id)
+        {
+            Game game = db.Games.Find(id);
+            RoundViewModel model = new RoundViewModel();
+
+switch (game.CurrentRound)
+            {
+                case 1:
+                    ViewBag.Title = "Round 1";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 1;
+                    model.CurrentEarnings = 0;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round1Multiplier;
+                    model.MultiplierText = getNumberString(game.Round1Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round1ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "So how do you want to do this?";
+                    model.Message2 = "Oh yeah, you can't talk to me.";
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 2:
+                    ViewBag.Title = "Round 2";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 2;
+                    model.RoundReturned = game.Round1Returned;
+                    model.CurrentEarnings = game.Round1Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round2Multiplier;
+                    model.MultiplierText = getNumberString(game.Round2Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round2ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "do you want to work together?";
+                    model.Message2 = "We should cooperate to make as much money as possible.";
+                    model.Message3 = "Either way";
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 3:
+                    ViewBag.Title = "Round 3";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 3;
+                    model.RoundReturned = game.Round2Returned;
+                    model.CurrentEarnings = game.Round2Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round3Multiplier;
+                    model.MultiplierText = getNumberString(game.Round3Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round3ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "Hmmm";
+                    model.Message2 = null;
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 4:
+                    ViewBag.Title = "Round 4";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 4;
+                    model.RoundReturned = game.Round3Returned;
+                    model.CurrentEarnings = game.Round3Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round4Multiplier;
+                    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round4ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "So that was a mistake.";
+                    model.Message2 = "I will cooperate on this round";
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                default:
+                    return RedirectToAction("Summary", new { id = game.GameID });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Waiting(Game thisGame)
+        {
+
+            Game game = db.Games.Find(thisGame.GameID);
+            RoundViewModel model = new RoundViewModel();
+
+            switch (game.CurrentRound)
+            {
+                case 1:
+                    ViewBag.Title = "Round 1";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 1;
+                    model.CurrentEarnings = 0;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round1Multiplier;
+                    model.MultiplierText = getNumberString(game.Round1Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round1ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "So how do you want to do this?";
+                    model.Message2 = "Oh yeah, you can't talk to me.";
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 2:
+                    ViewBag.Title = "Round 2";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 2;
+                    model.RoundReturned = game.Round1Returned;
+                    model.CurrentEarnings = game.Round1Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round2Multiplier;
+                    model.MultiplierText = getNumberString(game.Round2Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round2ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "do you want to work together?";
+                    model.Message2 = "We should cooperate to make as much money as possible.";
+                    model.Message3 = "Either way";
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 3:
+                    ViewBag.Title = "Round 3";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 3;
+                    model.RoundReturned = game.Round2Returned;
+                    model.CurrentEarnings = game.Round2Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round3Multiplier;
+                    model.MultiplierText = getNumberString(game.Round3Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round3ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "Hmmm";
+                    model.Message2 = null;
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                case 4:
+                    ViewBag.Title = "Round 4";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 4;
+                    model.RoundReturned = game.Round3Returned;
+                    model.CurrentEarnings = game.Round3Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round4Multiplier;
+                    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round4ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "So that was a mistake.";
+                    model.Message2 = "I will cooperate on this round";
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+                default:
+                    ViewBag.Title = "Round 4";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 4;
+                    model.RoundReturned = game.Round4Returned;
+                    model.CurrentEarnings = game.Round4Returned;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round4Multiplier;
+                    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round4ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = null;
+                    model.Message2 = null;
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return RedirectToAction("Game", new { id = game.GameID });
+            }
         }
 
         public ActionResult Game(int? id)
@@ -70,7 +275,7 @@ namespace Economic_Game.Controllers
                     model.GameID = game.GameID;
                     model.CurrentRound = 1;
                     model.CurrentEarnings = 0;
-                    model.RoundType = "Practice Round";
+                    model.RoundType = "Real Money";
                     model.ComputerPersuasion = game.ComputerPersuasion;
                     model.ComputerApology = game.ComputerApology;
                     model.Multiplier = game.Round1Multiplier;
@@ -78,14 +283,18 @@ namespace Economic_Game.Controllers
                     model.PlayerTotal = game.PlayerTotal;
                     model.ReturnPercentage = game.Round1ReturnPercentage;
                     model.StartingAmount = game.StartingAmount;
-                    model.Message1 = "This round is just practice, right?";
+                    model.Message1 = "So how do you want to do this?";
                     model.Message2 = "Oh yeah, you can't talk to me.";
-                    model.Message3 = "Sorry";
+                    model.Message3 = null;
                     ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 2:
+                    ViewBag.Title = "Round 2";
                     model.GameID = game.GameID;
                     model.CurrentRound = 2;
+                    model.RoundReturned = game.Round1Returned;
+                    model.CurrentEarnings = game.PlayerTotal;
+                    model.RoundType = "Real Money";
                     model.ComputerPersuasion = game.ComputerPersuasion;
                     model.ComputerApology = game.ComputerApology;
                     model.Multiplier = game.Round2Multiplier;
@@ -93,10 +302,72 @@ namespace Economic_Game.Controllers
                     model.PlayerTotal = game.PlayerTotal;
                     model.ReturnPercentage = game.Round2ReturnPercentage;
                     model.StartingAmount = game.StartingAmount;
-
+                    model.Message1 = "do you want to work together?";
+                    model.Message2 = "We should cooperate to make as much money as possible.";
+                    model.Message3 = "Either way";
+                    ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
+                case 3:
+                    ViewBag.Title = "Round 3";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 3;
+                    model.RoundReturned = game.Round2Returned;
+                    model.CurrentEarnings = game.PlayerTotal;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round3Multiplier;
+                    model.MultiplierText = getNumberString(game.Round3Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round3ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "Hmmm";
+                    model.Message2 = null;
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return View(model);
+                case 4:
+                    ViewBag.Title = "Round 4";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 4;
+                    model.RoundReturned = game.Round3Returned;
+                    model.CurrentEarnings = game.PlayerTotal;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round4Multiplier;
+                    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round4ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = "So that was a mistake.";
+                    model.Message2 = "I will cooperate on this round";
+                    model.Message3 = null;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return View(model);
+                case 5:
+                    ViewBag.Title = "Round 4";
+                    model.GameID = game.GameID;
+                    model.CurrentRound = 4;
+                    model.RoundReturned = game.Round4Returned;
+                    model.CurrentEarnings = game.PlayerTotal;
+                    model.RoundType = "Real Money";
+                    model.ComputerPersuasion = game.ComputerPersuasion;
+                    model.ComputerApology = game.ComputerApology;
+                    model.Multiplier = game.Round4Multiplier;
+                    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                    model.PlayerTotal = game.PlayerTotal;
+                    model.ReturnPercentage = game.Round4ReturnPercentage;
+                    model.StartingAmount = game.StartingAmount;
+                    model.Message1 = null;
+                    model.Message2 = null;
+                    model.Message3 = null;
+                    ViewBag.EndGame = true;
+                    ViewData["Questions"] = db.Questions.ToList();
+                    return View(model);
+                default:
+                    return RedirectToAction("Summary", new { id = game.GameID });
             }
-            return RedirectToAction("Summary", new { id = game.GameID });
         }
 
         [HttpPost]
@@ -104,18 +375,47 @@ namespace Economic_Game.Controllers
         {
             Game game = db.Games.Find(model.GameID);
 
-            double roundInvestment = 0.00;
-            string rawRoundInvestment = model.RoundInvestmentDollars.ToString() + '.' + model.RoundInvestmentCents.ToString();
-            if (Double.TryParse(rawRoundInvestment, out roundInvestment))
+            string investmentDollars = "0";
+            string investmentCents = "00";
+
+            string keptDollars = "0";
+            string keptCents = "00";
+
+            if(model.RoundInvestmentDollars != null)
             {
-                roundInvestment = double.Parse(rawRoundInvestment);
+                investmentDollars = model.RoundInvestmentDollars;
             }
 
-            double roundKept = 0.00;
-            string rawRoundKept = model.RoundKeptDollars.ToString() + '.' + model.RoundKeptCents.ToString();
-            if (Double.TryParse(rawRoundKept, out roundKept))
+            if(model.RoundInvestmentCents != null)
             {
-                roundKept = double.Parse(rawRoundKept);
+                investmentCents = model.RoundInvestmentCents;
+            }
+
+            if (model.RoundKeptDollars != null)
+            {
+                keptDollars = model.RoundKeptDollars;
+            }
+
+            if (model.RoundInvestmentCents != null)
+            {
+                keptCents = model.RoundKeptCents;
+            }
+
+
+            decimal roundInvestment = 0M;
+
+            
+            string rawRoundInvestment = investmentDollars + "." + investmentCents;
+            if (Decimal.TryParse(rawRoundInvestment, out roundInvestment))
+            {
+                roundInvestment = Decimal.Parse(rawRoundInvestment);
+            }
+
+            decimal roundKept = 0M;
+            string rawRoundKept = keptDollars + '.' + keptCents;
+            if (Decimal.TryParse(rawRoundKept, out roundKept))
+            {
+                roundKept = decimal.Parse(rawRoundKept);
             }
 
 
@@ -167,8 +467,8 @@ namespace Economic_Game.Controllers
                     {
                         game.Round1Investment = (decimal)roundInvestment;
                         game.Round1Returned = (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
-                        //game.PlayerTotal += (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
-                        game.PlayerTotal = 0;
+                        game.PlayerTotal += (model.Multiplier * (decimal)roundInvestment) * model.ReturnPercentage;
+                        //game.PlayerTotal = 0;
                     }
                     else
                     {
@@ -190,10 +490,10 @@ namespace Economic_Game.Controllers
                     model.StartingAmount = game.StartingAmount;
                     model.CurrentEarnings = 0;
                     model.Message1 = "do you want to work together?";
-                    model.Message2 = "Either way";
-                    model.Message3 = "Sorry";
+                    model.Message2 = "We should cooperate to make as much money as possible";
+                    model.Message3 = null;
                     ViewBag.GameMessage = "Seller has decided to return " + game.Round1Returned.Value.ToString("C");
-                    return View(model);
+                    return View("Waiting", game);
                 case 2:
                     game.CurrentRound = 3;
 
@@ -237,7 +537,7 @@ namespace Economic_Game.Controllers
                     model.Message1 = "";
                     model.Message2 = "Hmmm";
                     model.Message3 = "";
-                    return View(model);
+                    return View("Waiting", game);
                 case 3:
                     game.CurrentRound = 4;
 
@@ -276,13 +576,13 @@ namespace Economic_Game.Controllers
                     model.CurrentEarnings = game.PlayerTotal;
                     model.ReturnPercentage = game.Round4ReturnPercentage;
                     model.StartingAmount = game.StartingAmount;
-                    ViewBag.GameMessage = "Seller has decided not to return any of your investment.";
+                    ViewBag.GameMessage = "Seller has decided to return " + game.Round3Returned.Value.ToString("C");
                     model.Message1 = "So that was a mistake.";
-                    model.Message2 = "";
-                    model.Message3 = "I won't do that again.";
-                    return View(model);
+                    model.Message2 = "I will cooperate on this round";
+                    model.Message3 = null;
+                    return View("Waiting", game);
                 case 4:
-                    game.CurrentRound = 4;
+                    game.CurrentRound = 5;
 
                     if (roundKept > 0)
                     {
@@ -310,7 +610,7 @@ namespace Economic_Game.Controllers
 
                     ViewBag.Title = "Round 4";
                     model.GameID = game.GameID;
-                    model.CurrentRound = 4;
+                    model.CurrentRound = 5;
                     model.RoundType = "Real Money";
                     model.ComputerPersuasion = game.ComputerPersuasion;
                     model.ComputerApology = game.ComputerApology;
@@ -323,7 +623,7 @@ namespace Economic_Game.Controllers
                     model.StartingAmount = game.StartingAmount;
                     //return RedirectToAction("Summary", new { id = model.GameID });
                     ViewBag.EndGame = true;
-                    return View(model);
+                    return View("Waiting", game);
             }
             return RedirectToAction("Summary", new { id = game.GameID });
         }
