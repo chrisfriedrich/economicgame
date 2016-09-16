@@ -401,6 +401,21 @@ switch (game.CurrentRound)
                 keptCents = model.RoundKeptCents;
             }
 
+            if (investmentCents != null)
+            {
+                if (investmentCents.Length == 1)
+                {
+                    investmentCents = "0" + investmentCents;
+                }
+            }
+
+            if (keptCents != null)
+            {
+                if (keptCents.Length == 1)
+                {
+                    keptCents = "0" + keptCents;
+                }
+            }
 
             decimal roundInvestment = 0M;
 
@@ -419,29 +434,29 @@ switch (game.CurrentRound)
             }
 
 
-            if (roundInvestment == 0 && roundKept == 0)
-            {
-                ViewBag.Error = "You must invest money or indicate you wish to keep money.";
-                return View(model);
-            }
-            else if (roundInvestment > 0 && roundKept > 0)
-            {
-                if (((decimal)roundInvestment + (decimal)roundKept) > model.StartingAmount || ((decimal)roundInvestment + (decimal)roundKept) < model.StartingAmount)
-                {
-                    ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
-                    return View(model);
-                }
-            }
-            else if (roundInvestment == 0 && ((decimal)roundKept < model.StartingAmount || (decimal)roundKept > model.StartingAmount))
-            {
-                ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
-                return View(model);
-            }
-            else if (roundKept == 0 && ((decimal)roundInvestment < model.StartingAmount || (decimal)roundInvestment > model.StartingAmount))
-            {
-                ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
-                return View(model);
-            }
+            //if (roundInvestment == 0 && roundKept == 0)
+            //{
+            //    ViewBag.Error = "You must invest money or indicate you wish to keep money.";
+            //    return View(model);
+            //}
+            //else if (roundInvestment > 0 && roundKept > 0)
+            //{
+            //    if (((decimal)roundInvestment + (decimal)roundKept) > model.StartingAmount || ((decimal)roundInvestment + (decimal)roundKept) < model.StartingAmount)
+            //    {
+            //        ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
+            //        return View(model);
+            //    }
+            //}
+            //else if (roundInvestment == 0 && ((decimal)roundKept < model.StartingAmount || (decimal)roundKept > model.StartingAmount))
+            //{
+            //    ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
+            //    return View(model);
+            //}
+            //else if (roundKept == 0 && ((decimal)roundInvestment < model.StartingAmount || (decimal)roundInvestment > model.StartingAmount))
+            //{
+            //    ViewBag.Error = "The total invested and the total kept combined must equal " + model.StartingAmount.ToString();
+            //    return View(model);
+            //}
 
             ModelState.Clear();
 

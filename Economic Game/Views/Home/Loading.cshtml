@@ -15,8 +15,9 @@
     <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
     <style>
         #progressbar {
-            width: 800px;
+            width: 400px;
             margin: 0 auto;
+            margin-bottom: 15px;
         }
 
         #progressbar div {
@@ -26,6 +27,27 @@
     <script>
         $(document).ready(function () {
 
+            var step1 = 20000 + Math.floor(Math.random() * 10000);
+            var period1 = step1;
+            var speed1 = step1 / 30;
+
+            var step2 = 7000 + Math.floor(Math.random() * 3000);
+            var period2 = step2 + period1;
+            var speed2 = step2 / 30;
+
+            var step3 = 8000 + Math.floor(Math.random() * 2000);
+            var period3 = step3 + period2;
+            var speed3 = step3 / 30;
+
+            var step4 = 3000 + Math.floor(Math.random() * 2000);
+            var period4 = step4 + period3;
+            var speed4 = step4 / 30;
+
+            var step5 = 3000 + Math.floor(Math.random() * 2000);
+            var period5 = step5 + period4;
+            var speed5 = step5 / 30;
+
+            
             $('#submitButton').prop('disabled', true);
 
             var $pG = $('#progressbar').progressbar();
@@ -39,76 +61,76 @@
                 var pGress = setInterval(function () {
                     var pVal = $pG.progressbar('option', 'value');
                     var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                    if (pCnt > 40) {
+                    if (pCnt > ((period1/period5) * 100)) {
                         clearInterval(pGress);
                     } else {
                         $pG.progressbar({
                             value: pCnt
                         });
                     }
-                }, 450);
+                }, speed1);
             }, 0);
 
             setTimeout(function () {
                 $('#progressMessage1').fadeOut(200);
-            }, 13800);
+            }, period1);
 
             setTimeout(function () {
                 $('#progressMessage2').fadeIn(200);
                 var pGress = setInterval(function () {
                     var pVal = $pG.progressbar('option', 'value');
                     var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                    if (pCnt > 60) {
+                    if (pCnt > ((period2/period5)*100)) {
                         clearInterval(pGress);
                     } else {
                         $pG.progressbar({
                             value: pCnt
                         });
                     }
-                }, 250);
-            }, 13800);
+                }, speed2);
+            }, period1);
 
             setTimeout(function () {
                 $('#progressMessage2').fadeOut(200);
-            }, 14500);
+            }, period2);
 
             setTimeout(function () {
                 $('#progressMessage3').fadeIn(200);
                 var pGress = setInterval(function () {
                     var pVal = $pG.progressbar('option', 'value');
                     var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                    if (pCnt > 80) {
+                    if (pCnt > ((period3/period5)*100)) {
                         clearInterval(pGress);
                     } else {
                         $pG.progressbar({
                             value: pCnt
                         });
                     }
-                }, 180);
-            }, 14700);
+                }, speed3);
+            }, period2);
 
             setTimeout(function () {
                 $('#progressMessage3').fadeOut(200);
-            }, 17000);
+            }, period3);
 
             setTimeout(function () {
                 $('#progressMessage4').fadeIn(200);
                 var pGress = setInterval(function () {
                     var pVal = $pG.progressbar('option', 'value');
                     var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                    if (pCnt > 90) {
+                    if (pCnt > ((period4/period5)*100)) {
                         clearInterval(pGress);
                     } else {
                         $pG.progressbar({
                             value: pCnt
                         });
                     }
-                }, 200);
-            }, 17200)
+                }, speed4);
+            }, period3)
     
             setTimeout(function () {
                 $('#progressMessage4').fadeOut(500);
-            }, 24000);
+            }, period4);
 
             setTimeout(function () {
                 $('#progressMessage5').show();
@@ -122,40 +144,21 @@
                             value: pCnt
                         });
                     }
-                }, 30);
-            }, 24600)
-
-            //setTimeout(function () {
-            //    $('#progressMessage5').fadeOut(200);
-            //}, 24500);
+                }, speed5);
+            }, period4)
 
             setTimeout(function () {
                 $('#submitButton').prop("disabled", false);
-            }, 24700);
+            }, period4 + 300);
 
             setTimeout(function () {
                 if ($('#submitButton').text.length > 0) {
                     $('#submitButton').prop("class", "btn btn-default btn-success");
                 }
-            }, 24700);
+            }, period4 + 400);
         });
         </script>
-    @*<script>
-        $(function () {
-            var $pG = $('#progressbar').progressbar();
-            var pGress = setInterval(function () {
-                var pVal = $pG.progressbar('option', 'value');
-                var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                if (pCnt > 100) {
-                    clearInterval(pGress);
-                } else {
-                    $pG.progressbar({
-                        value: pCnt
-                    });
-                }
-            }, 100);
-        });
-    </script>*@
+
 </head>
 <body>
     <div class="container body-content">
@@ -186,10 +189,10 @@
                                 Seller Player found...
                             </div>
                             <div id="progressMessage3">
-                                Setting up game...
+                                Waiting for Player to join the game...
                             </div>
                             <div id="progressMessage4">
-                                Waiting for Player to join the game...
+                                Player joined. Setting up game...
                             </div>
                             <div id="progressMessage5">
                                 Ready to Play.  Click <strong>Play</strong> to begin.

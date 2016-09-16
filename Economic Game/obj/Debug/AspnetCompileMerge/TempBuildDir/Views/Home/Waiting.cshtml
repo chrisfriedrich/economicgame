@@ -15,8 +15,9 @@
     <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
     <style>
         #progressbar {
-            width: 800px;
+            width: 400px;
             margin: 0 auto;
+            margin-bottom: 15px;
         }
 
         #progressbar div {
@@ -30,139 +31,62 @@
 
             var $pG = $('#progressbar').progressbar();
 
+            var step1 = 10000 + Math.floor(Math.random() * 5000);
+            var period1 = step1;
+            var speed1 = step1 / 50;
+
+            var step2 = 3000 + Math.floor(Math.random() * 3000);
+            var period2 = step2 + period1;
+            var speed2 = step2 / 50;
+
             $pG.progressbar({
                 value: 1
             });
-
-            
 
             setTimeout(function () {
                 $('#progressMessage1').fadeIn(200);
                 var pGress = setInterval(function () {
                     var pVal = $pG.progressbar('option', 'value');
                     var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                    if (pCnt > 90) {
+                    if (pCnt > ((period1 / period2) * 100)) {
                         clearInterval(pGress);
                     } else {
                         $pG.progressbar({
                             value: pCnt
                         });
                     }
-                }, 200);
+                }, speed1);
             }, 0);
 
             setTimeout(function () {
                 $('#progressMessage1').fadeOut(200);
-            }, 10000);
+            }, period1);
 
-
-                setTimeout(function () {
+            setTimeout(function () {
                 $('#progressMessage2').fadeIn(200);
-                    var pGress = setInterval(function () {
-                        var pVal = $pG.progressbar('option', 'value');
-                        var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                        if (pCnt > 100) {
-                            clearInterval(pGress);
-                        } else {
+                var pGress = setInterval(function () {
+                    var pVal = $pG.progressbar('option', 'value');
+                    var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
+                    if (pCnt > ((period2 / period2) * 100)) {
+                        clearInterval(pGress);
+                    } else {
                         $pG.progressbar({
-                                value: pCnt
+                            value: pCnt
                         });
-                        }
-                    }, 50);
-                }, 10200);
+                    }
+                }, speed2);
+            }, period1);
 
-                setTimeout(function () {
-                    //$('#progressMessage2').fadeOut(200);
-                    $('#messageForm').submit();
-                }, 11000);
+            setTimeout(function () {
+                $('#progressMessage2').fadeOut(200);
+            }, period2);
 
-            //    setTimeout(function () {
-            //    $('#progressMessage3').fadeIn(200);
-            //        var pGress = setInterval(function () {
-            //            var pVal = $pG.progressbar('option', 'value');
-            //            var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-            //            if (pCnt > 80) {
-            //                clearInterval(pGress);
-            //            } else {
-            //            $pG.progressbar({
-            //                    value: pCnt
-            //            });
-            //            }
-            //        }, 180);
-            //    }, 25000);
-
-            //    setTimeout(function () {
-            //    $('#progressMessage3').fadeOut(500);
-            //    }, 30000);
-
-            //    setTimeout(function () {
-            //    $('#progressMessage4').show();
-            //        var pGress = setInterval(function () {
-            //            var pVal = $pG.progressbar('option', 'value');
-            //            var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-            //            if (pCnt > 90) {
-            //                clearInterval(pGress);
-            //            } else {
-            //            $pG.progressbar({
-            //                    value: pCnt
-            //            });
-            //            }
-            //        }, 180);
-            //    }, 30000)
-    
-            //setTimeout(function () {
-            //    $('#progressMessage4').fadeOut(500);
-            //    }, 33000);
-
-            //    setTimeout(function () {
-            //    $('#progressMessage5').show();
-            //        var pGress = setInterval(function () {
-            //            var pVal = $pG.progressbar('option', 'value');
-            //            var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-            //            if (pCnt > 100) {
-            //                clearInterval(pGress);
-            //            } else {
-            //            $pG.progressbar({
-            //                    value: pCnt
-            //            });
-            //            }
-            //        }, 20);
-            //    }, 33000)
-
-            //setTimeout(function () {
-            //    $('#progressMessage5').fadeOut(500);
-            //    }, 35000);
-
-            //    setTimeout(function () {
-            //    $('#submitButton').prop("disabled", false);
-            //    }, 35000);
-
-            //    setTimeout(function () {
-            //        if ($('#submitButton').text.length > 0) {
-            //        $('#submitButton').prop("class", "btn btn-default btn-success");
-            //        }
-            //    }, 30000);
-            });
+            setTimeout(function () {
+                $('#messageForm').submit();
+            }, period2 + 300);
+        });
         </script>
 
-
-
-    @*<script>
-        $(function () {
-            var $pG = $('#progressbar').progressbar();
-            var pGress = setInterval(function () {
-                var pVal = $pG.progressbar('option', 'value');
-                var pCnt = !isNaN(pVal) ? (pVal + 1) : 1;
-                if (pCnt > 100) {
-                    clearInterval(pGress);
-                } else {
-                    $pG.progressbar({
-                        value: pCnt
-                    });
-                }
-            }, 100);
-        });
-    </script>*@
 </head>
 <body>
     <div class="container body-content">

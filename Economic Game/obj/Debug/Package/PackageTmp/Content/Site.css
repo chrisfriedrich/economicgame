@@ -61,6 +61,13 @@ textarea {
     font-family: Consolas;
 }
 
+#sellerMessage4 {
+    display: none;
+    font-size: medium;
+    color: green;
+    font-family: Consolas;
+}
+
 #sellerTyping {
     display: none;
     text-align: center;

@@ -2,99 +2,28 @@
 @{
 }
 
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>*@
-
 <script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>
 
-@if (ViewBag.Error != null)
-{
 <script>
     $(document).ready(function () {
 
     $('#submitButton').prop('disabled', true);
 
-    setTimeout(function () {
-        $('#progressMessage1').fadeIn(200);
-    }, 0);
-
-    setTimeout(function () {
-        $('#progressMessage1').fadeOut(200);
-    }, 19000);
-
-    setTimeout(function () {
-        $('#progressMessage2').fadeIn(200);
-    }, 19000);
-
-    setTimeout(function () {
-        $('#progressMessage2').fadeOut(200);
-    }, 25000);
-
-    setTimeout(function () {
-        $('#progressMessage3').fadeIn(200);
-    }, 25000);
-
-    setTimeout(function () {
-        $('#progressMessage3').fadeOut(500);
-    }, 30000);
-
-    setTimeout(function () {
-        $('#progressMessage4').show();
-    }, 30000)
-    
-    setTimeout(function () {
-        $('#progressMessage4').fadeOut(500);
-    }, 33000);
-
-    setTimeout(function () {
-        $('#progressMessage5').show();
-    }, 33000)
-
-    setTimeout(function () {
-        $('#progressMessage5').fadeOut(500);
-    }, 35000);
-
-    setTimeout(function () {
-        $('#submitButton').prop("disabled", false);
-    }, 35000);
-
-    setTimeout(function () {
-        if ($('#submitButton').text.length > 0) {
+    $('input[type="text"]').keyup(function () {
+        if ($("#AmazonID").val()) {
+            $('#submitButton').prop("disabled", false);
             $('#submitButton').prop("class", "btn btn-default btn-success");
         }
-    }, 30000);
-
-    //setTimeout(function () {
-    //    $('#sellerTyping').fadeIn(500);
-    //}, 23000);
-
-    //setTimeout(function () {
-    //    $('#sellerTyping').hide(300);
-    //}, 24000);
-
-    //setTimeout(function () {
-    //    $('#sellerWaitingMessage').fadeIn(500);
-    //}, 25000);
-
+        else {
+            $('#submitButton').prop("disabled", true);
+            $('#submitButton').prop("class", "btn btn-default");
+        }
+    });
+    
 });
 
 </script>
-}
-else
-{
-    <script>
-        $(document).ready(function () {
-            $('#progressMessage5').show();
-            $('#submitButton').prop("disabled", false);
-            $('#submitButton').prop("class", "btn btn-default btn-success");
-        });
-    </script>
-}
-
 
 
     @using (Html.BeginForm())
@@ -113,27 +42,6 @@ else
                     <p class="text-center">
                         <strong>COMMUNICATION MODE:</strong> &nbsp;&nbsp; Seller to Buyer - <span style="font-weight: bold; color: red;">ONE WAY</span>
                     </p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <div id="progressMessageArea" style="text-align: center; font-weight: bold; height: 50px; vertical-align: middle;">
-                        <div id="progressMessage1">
-                            Searching for Seller Players...
-                        </div>
-                        <div id="progressMessage2">
-                            Seller Player found...
-                        </div>
-                        <div id="progressMessage3">
-                            Setting up game...
-                        </div>
-                        <div id="progressMessage4">
-                            Waiting for Player to join the game...
-                        </div>
-                        <div id="progressMessage5">
-                            Ready to Play.  Enter your Amazon ID and click <strong>Play</strong> to begin.
-                        </div>
-                    </div>
                 </td>
             </tr>
             <tr>
