@@ -23,6 +23,14 @@ namespace Economic_Game.Controllers
         public ActionResult Index(LoginViewModel model)
         {
             ViewBag.Title = "Home";
+
+            Game validation = db.Games.FirstOrDefault(x => x.AmazonID.ToLower() == model.AmazonID.ToLower());
+
+            if(validation != null)
+            {
+                ModelState.AddModelError("AmazonID", "Your Amazon ID has already been used.  You can only play the investment game one time.  Thank you.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

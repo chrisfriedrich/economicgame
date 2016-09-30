@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="EconomicGame" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Chris\\Documents\\Visual\ Studio\ 2015\\Projects\\EconomicGame\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Chris\\Documents\\Visual\ Studio\ 2015\\Projects\\EconomicGame\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Documents\\Visual\ Studio\ 2015\\Projects\\Economic\ Game\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Documents\\Visual\ Studio\ 2015\\Projects\\Economic\ Game\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp$" />
   </parameter>
   <parameter name="EconomicGameDataContext-Web.config Connection String" description="EconomicGameDataContext Connection String used in web.config by the application to access the database." value="Data Source=tcp:economicgameserver.database.windows.net,1433;Initial Catalog=EconomicGameDataContext;Persist Security Info=False;User ID=EconomicAdmin;Password=S!ntegrat1veY;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Chris\\Documents\\Visual\ Studio\ 2015\\Projects\\EconomicGame\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EconomicGameDataContext']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="D:\\Documents\\Visual\ Studio\ 2015\\Projects\\Economic\ Game\\Economic\ Game\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EconomicGameDataContext']/@connectionString" />
   </parameter>
 </parameters>

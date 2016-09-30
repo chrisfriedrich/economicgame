@@ -100,3 +100,17 @@ C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\vbc.exe.config
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\vbc.rsp
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\csc.exe.config
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\csc.rsp
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\csi.exe
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\csi.rsp
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.AppContext.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.IO.FileSystem.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\vbc.exe.config
+D:\Documents\Visual Studio 2015\Projects\Economic Game\Economic Game\bin\roslyn\vbc.rsp

@@ -2,66 +2,7 @@
 @{
 }
 
-@*<h2>Round1</h2>
-
-    <h3>Starting Amount: @Model.StartingAmount.ToString()</h3>*@
-
 <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
-
-@*@if (ViewBag.GameMessage != null)
-{
-    <script>
-
-$(document).ready(function(){
-
-alert('@ViewBag.GameMessage');
-
-});
-
-    </script>
-}*@
-
-@*<script>
-$(document).ready(function () {
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 5000);
-
-    setTimeout(function () {
-        $('#sellerTyping').hide(300);
-    }, 8000);
-
-    setTimeout(function () {
-        $('#sellerMessage1').fadeIn(500);
-    }, 9000);
-
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 11000);
-
-    setTimeout(function () {
-        $('#sellerTyping').hide(300);
-    }, 13000);
-
-    setTimeout(function () {
-        $('#sellerMessage2').fadeIn(500);
-    }, 14000);
-
-    setTimeout(function () {
-        $('#sellerTyping').fadeIn(500);
-    }, 23000);
-
-    setTimeout(function () {
-        $('#sellerTyping').hide(300);
-    }, 24000);
-
-    setTimeout(function () {
-        $('#sellerWaitingMessage').fadeIn(500);
-    }, 25000);
-
-});
-</script>*@
-
 
 @using (Html.BeginForm())
 {
@@ -85,7 +26,6 @@ $(document).ready(function () {
             <th style="width: 20%">Kept</th>
             <th style="width: 20%">Invested</th>
             <th style="width: 20%">Returned</th>
-            @*<td>Round Subtotal</td>*@
         </tr>
         <tr>
             <td>1</td>
@@ -93,9 +33,6 @@ $(document).ready(function () {
             <td>@Model.Round1Kept.Value.ToString("C")</td>
             <td>@Model.Round1Investment.Value.ToString("C")</td>
             <td>@Model.Round1Returned.Value.ToString("C")</td>
-            @*@{ decimal round1Subtotal = 0;
-            }
-            <td>@round1Subtotal</td>*@
         </tr>
         <tr>
             <td>2</td>
@@ -103,8 +40,6 @@ $(document).ready(function () {
             <td>@Model.Round2Kept.Value.ToString("C")</td>
             <td>@Model.Round2Investment.Value.ToString("C")</td>
             <td>@Model.Round2Returned.Value.ToString("C")</td>
-            @*@{ decimal round2Subtotal = (decimal)Model.Round2Kept + (decimal)Model.Round2Returned; }
-            <td>@round2Subtotal</td>*@
         </tr>
         <tr>
             <td>3</td>
@@ -112,8 +47,6 @@ $(document).ready(function () {
             <td>@Model.Round3Kept.Value.ToString("C")</td>
             <td>@Model.Round3Investment.Value.ToString("C")</td>
             <td>@Model.Round3Returned.Value.ToString("C")</td>
-            @*@{ decimal round3Subtotal = (decimal)Model.Round3Kept + (decimal)Model.Round3Returned; }
-            <td>@round3Subtotal</td>*@
         </tr>
         <tr>
             <td>4</td>
@@ -121,9 +54,6 @@ $(document).ready(function () {
             <td>@Model.Round4Kept.Value.ToString("C")</td>
             <td>@Model.Round4Investment.Value.ToString("C")</td>
             <td>@Model.Round4Returned.Value.ToString("C")</td>
-
-            @*@{ decimal round4Subtotal = (decimal)Model.Round4Kept + (decimal)Model.Round4Returned;}
-            <td>@round4Subtotal</td>*@
         </tr>
         <tr>
             <th colspan="2">SUBTOTALS</th>
@@ -154,9 +84,9 @@ $(document).ready(function () {
         <tr>
             <td colspan="5">
                 <p class="text-center">
-                    <a href="https://business.uoregon.edu" class="btn btn-default btn-success"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a>
+                    <a href="https://google.com" class="btn btn-default btn-success"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Logout</a>
                 </p>
             </td>
         </tr>
     </table>
-                        }
+}
