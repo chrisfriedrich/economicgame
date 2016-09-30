@@ -87,11 +87,6 @@
                                 You can choose to either keep the @Model.StartingAmount.Value.ToString("C") or invest part of it, or all of it with the seller.&nbsp;&nbsp;
                                 Whatever amount of money you choose to invest (up to @Model.StartingAmount.Value.ToString("C")) will be multiplied by <strong>@Model.MultiplierText</strong> and given to the seller.&nbsp;&nbsp;
                                 The seller can then choose to share part, none, or all of the profit back with you.
-                                @*keep any amount up to&nbsp;
-                                @{
-                                    decimal potential = (decimal)Model.StartingAmount * (decimal)Model.Multiplier;
-                                }
-                                @potential.ToString("C") or share part or all of the profit back with you.<br /><br />*@
                             </p><br />
                             <p class="lead" style="width: 90%; margin: 0 auto;">
                                 Please enter how much you would like to invest and how much you would like to keep.&nbsp;&nbsp;
@@ -138,11 +133,11 @@
                                             <span style="font-size: x-large; font-weight: bold;">$</span>
                                             @if ((Decimal)Model.StartingAmount >= (Decimal)1.00)
                                             {
-                                                @Html.TextBoxFor(Model => Model.RoundInvestmentDollars, new { @class = "form-control smallest", @maxlength = "1" })
+                                                @Html.TextBoxFor(Model => Model.RoundInvestmentDollars, new { @class = "form-control smaller", @maxlength = "2" })
                                             }
                                             else
                                             {
-                                                @Html.TextBox("RoundInvestmentDollars", "0", new { @class = "form-control smallest", @maxlength = "1", @disabled="disabled" })
+                                                @Html.TextBox("RoundInvestmentDollars", "0", new { @class = "form-control smallest", @maxlength = "2", @disabled="disabled" })
                                             }
                                             <span style="font-size: x-large; font-weight: bold;">.</span>@Html.TextBoxFor(Model => Model.RoundInvestmentCents, new { @class = "form-control smaller", @maxlength = "2" })
                                         </div>
@@ -156,11 +151,11 @@
                                             <span style="font-size: x-large; font-weight: bold;">$</span>
                                             @if ((Decimal)Model.StartingAmount >= (Decimal)1.00)
                                             {
-                                                @Html.TextBoxFor(Model => Model.RoundKeptDollars, new { @class = "form-control smallest", @maxlength = "1" })
+                                                @Html.TextBoxFor(Model => Model.RoundKeptDollars, new { @class = "form-control smaller", @maxlength = "2" })
                                             }
                                             else
                                             {
-                                                @Html.TextBox("RoundKeptDollars", "0", new { @class = "form-control smallest", @maxlength = "1", @disabled = "disabled" })
+                                                @Html.TextBox("RoundKeptDollars", "0", new { @class = "form-control smallest", @maxlength = "2", @disabled = "disabled" })
                                             }
                                             <span style="font-size: x-large; font-weight: bold;">.</span>@Html.TextBoxFor(Model => Model.RoundKeptCents, new { @class = "form-control smaller", @maxlength = "2" })
                                         </div>
