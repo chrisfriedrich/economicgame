@@ -1,14 +1,17 @@
 ﻿@model Economic_Game.Models.RoundViewModel
 @{
+    ViewBag.Title = "Investment Game";
 }
 
-<script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
-<script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>
+@*<script src="~/Scripts/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui-1.12.0.js" type="text/javascript"></script>*@
 
 @if(ViewBag.Error == null)
     { 
     <script>
         $(document).ready(function () {
+
+        var timeout = 75000 + Math.floor(Math.random() * 25000);
 
         setTimeout(function () {
             $('#sellerTyping').fadeIn(500);
@@ -48,11 +51,11 @@
     
         setTimeout(function () {
             $('#sellerTyping').hide(300);
-        }, 45000);
+        }, timeout);
 
         setTimeout(function () {
             $('#sellerMessage4').show(200);
-        }, 45000);
+        }, timeout);
 
         $(".toggleFAQ").click(function () {
             $('#FAQtable').toggle();
@@ -182,7 +185,7 @@
                                 @potential.ToString("C") or share part or all of the profit back with you.<br /><br />
 
                                 Please enter how much you would like to invest and how much you would like to keep.&nbsp;&nbsp;
-                                <span style="font-size: large;">Remember the total cannot exceed @Model.StartingAmount.Value.ToString("C")</span>
+                                Remember the total cannot exceed @Model.StartingAmount.Value.ToString("C").
 
                             </p>
                         </td>
@@ -206,7 +209,7 @@
                                                 <div id="sellerMessage1">@Model.Message1<br /></div>
                                                 <div id="sellerMessage2">@Model.Message2<br /></div>
                                                 <div id="sellerMessage3">@Model.Message3<br /></div>
-                                                <div id="sellerMessage4">Hello?  Anyone there?<br /></div>
+                                                <div id="sellerMessage4">@Model.Message4<br /></div>
                                         </div>
                                         }
                                     </td>

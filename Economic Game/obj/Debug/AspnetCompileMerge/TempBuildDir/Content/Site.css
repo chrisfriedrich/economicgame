@@ -36,6 +36,22 @@ textarea {
     width: 35px;
 }
 
+#RoundInvestmentDollars {
+    width: 35px;
+}
+
+#RoundKeptDollars {
+    width: 35px;
+}
+
+#RoundInvestmentCents {
+    width: 45px;
+}
+
+#RoundKeptCents {
+    width: 45px;
+}
+
 .smaller {
     width: 45px;
 }
@@ -155,4 +171,14 @@ th {
 .summary-table td {
     text-align: right;
 
+}
+
+#progressbar {
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+#progressbar div {
+    background-color: green;
 }

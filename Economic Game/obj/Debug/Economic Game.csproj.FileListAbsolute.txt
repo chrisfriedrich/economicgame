@@ -86,3 +86,17 @@ C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\obj\Debug\Economic Game.dll
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\obj\Debug\Economic Game.pdb
 C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\obj\Debug\Economic Game.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\csc.exe.config
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\csc.rsp
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\csi.exe
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\csi.rsp
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\System.AppContext.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\vbc.exe.config
+C:\Users\Chris\Documents\Visual Studio 2015\Projects\EconomicGame\Economic Game\bin\roslyn\vbc.rsp

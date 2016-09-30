@@ -42,6 +42,7 @@ namespace Economic_Game.Models
         public string Message1 { get; set; }
         public string Message2 { get; set; }
         public string Message3 { get; set; }
+        public string Message4 { get; set; }
 
         public string ComputerPersuasion { get; set; }
         public string ComputerApology { get; set; }

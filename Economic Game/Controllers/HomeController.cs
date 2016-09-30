@@ -286,6 +286,7 @@ switch (game.CurrentRound)
                     model.Message1 = "So how do you want to do this?";
                     model.Message2 = "Oh yeah, you can't talk to me.";
                     model.Message3 = null;
+                    model.Message4 = "Hello?";
                     ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 2:
@@ -305,6 +306,7 @@ switch (game.CurrentRound)
                     model.Message1 = "do you want to work together?";
                     model.Message2 = "We should cooperate to make as much money as possible.";
                     model.Message3 = "Either way";
+                    model.Message4 = "Are you there?";
                     ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 3:
@@ -324,6 +326,7 @@ switch (game.CurrentRound)
                     model.Message1 = "Hmmm";
                     model.Message2 = null;
                     model.Message3 = null;
+                    model.Message4 = "?";
                     ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 4:
@@ -343,28 +346,30 @@ switch (game.CurrentRound)
                     model.Message1 = "So that was a mistake.";
                     model.Message2 = "I will cooperate on this round";
                     model.Message3 = null;
+                    model.Message4 = null;
                     ViewData["Questions"] = db.Questions.ToList();
                     return View(model);
                 case 5:
-                    ViewBag.Title = "Round 4";
-                    model.GameID = game.GameID;
-                    model.CurrentRound = 4;
-                    model.RoundReturned = game.Round4Returned;
-                    model.CurrentEarnings = game.PlayerTotal;
-                    model.RoundType = "Real Money";
-                    model.ComputerPersuasion = game.ComputerPersuasion;
-                    model.ComputerApology = game.ComputerApology;
-                    model.Multiplier = game.Round4Multiplier;
-                    model.MultiplierText = getNumberString(game.Round4Multiplier);
-                    model.PlayerTotal = game.PlayerTotal;
-                    model.ReturnPercentage = game.Round4ReturnPercentage;
-                    model.StartingAmount = game.StartingAmount;
-                    model.Message1 = null;
-                    model.Message2 = null;
-                    model.Message3 = null;
-                    ViewBag.EndGame = true;
-                    ViewData["Questions"] = db.Questions.ToList();
-                    return View(model);
+                //    ViewBag.Title = "Round 4";
+                //    model.GameID = game.GameID;
+                //    model.CurrentRound = 4;
+                //    model.RoundReturned = game.Round4Returned;
+                //    model.CurrentEarnings = game.PlayerTotal;
+                //    model.RoundType = "Real Money";
+                //    model.ComputerPersuasion = game.ComputerPersuasion;
+                //    model.ComputerApology = game.ComputerApology;
+                //    model.Multiplier = game.Round4Multiplier;
+                //    model.MultiplierText = getNumberString(game.Round4Multiplier);
+                //    model.PlayerTotal = game.PlayerTotal;
+                //    model.ReturnPercentage = game.Round4ReturnPercentage;
+                //    model.StartingAmount = game.StartingAmount;
+                //    model.Message1 = null;
+                //    model.Message2 = null;
+                //    model.Message3 = null;
+                //    ViewBag.EndGame = true;
+                //    ViewData["Questions"] = db.Questions.ToList();
+                //    return View(model);
+                //default:
                 default:
                     return RedirectToAction("Summary", new { id = game.GameID });
             }
@@ -396,7 +401,7 @@ switch (game.CurrentRound)
                 keptDollars = model.RoundKeptDollars;
             }
 
-            if (model.RoundInvestmentCents != null)
+            if (model.RoundKeptCents != null)
             {
                 keptCents = model.RoundKeptCents;
             }
@@ -488,6 +493,7 @@ switch (game.CurrentRound)
                     else
                     {
                         game.Round1Investment = 0;
+                        game.Round1Returned = 0;
                     }
 
                     db.Entry(game).State = EntityState.Modified;
@@ -507,6 +513,7 @@ switch (game.CurrentRound)
                     model.Message1 = "do you want to work together?";
                     model.Message2 = "We should cooperate to make as much money as possible";
                     model.Message3 = null;
+                    model.Message4 = "Hello?";
                     ViewBag.GameMessage = "Seller has decided to return " + game.Round1Returned.Value.ToString("C");
                     return View("Waiting", game);
                 case 2:
@@ -531,6 +538,7 @@ switch (game.CurrentRound)
                     else
                     {
                         game.Round2Investment = 0;
+                        game.Round2Returned = 0;
                     }
 
                     db.Entry(game).State = EntityState.Modified;
@@ -552,6 +560,7 @@ switch (game.CurrentRound)
                     model.Message1 = "";
                     model.Message2 = "Hmmm";
                     model.Message3 = "";
+                    model.Message4 = "?";
                     return View("Waiting", game);
                 case 3:
                     game.CurrentRound = 4;
@@ -575,6 +584,7 @@ switch (game.CurrentRound)
                     else
                     {
                         game.Round3Investment = 0;
+                        game.Round3Returned = 0;
                     }
 
                     db.Entry(game).State = EntityState.Modified;
@@ -595,6 +605,7 @@ switch (game.CurrentRound)
                     model.Message1 = "So that was a mistake.";
                     model.Message2 = "I will cooperate on this round";
                     model.Message3 = null;
+                    model.Message4 = null;
                     return View("Waiting", game);
                 case 4:
                     game.CurrentRound = 5;
@@ -618,6 +629,7 @@ switch (game.CurrentRound)
                     else
                     {
                         game.Round4Investment = 0;
+                        game.Round4Returned = 0;
                     }
 
                     db.Entry(game).State = EntityState.Modified;
